@@ -37,4 +37,4 @@ with open('clientes.sql', 'w') as file:
         # Escribe la sentencia SQL en el archivo
         file.write(insert_sql + '\n')
 
-print(f"Se han generado {num_registros} registros y se han guardado en 'datos_prueba.sql'.")
+print(f"Se han generado {num_registros} registros y se han guardado en 'clientes.sql'.")
