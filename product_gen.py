@@ -6,7 +6,7 @@ from faker import Faker
 fake = Faker()
 
 # Abre un archivo para escribir los datos SQL INSERT
-with open('proveedores.sql', 'w') as file:
+with open('productos.sql', 'w') as file:
     num_registros_presentacion = 4
 
     # Define la cantidad de registros a generar para la tabla "producto_tipos"
