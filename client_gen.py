@@ -32,7 +32,7 @@ with open('clientes.sql', 'w') as file:
         cli_obs = fake.text(max_nb_chars=max_length) if random.choice([True, False]) else None
 
         # Genera la sentencia SQL INSERT
-        insert_sql = f"INSERT INTO clientes (CLI_ID TCLI_ID, CLI_APELLIDO, CLI_NOMBRE, CLI_RUC, CLI_DIR, CLI_MAIL, PROV_TELEFONO_, CLI_OBS) VALUES ({cli_id}, {tcli_id}, '{cli_apellido}', '{cli_nombre}', '{cli_ruc}', '{cli_dir}', '{cli_mail}', '{prov_telefono}', '{cli_obs}');"
+        insert_sql = f"INSERT INTO clientes (CLI_ID,TCLI_ID, CLI_APELLIDO, CLI_NOMBRE, CLI_RUC, CLI_DIR, CLI_MAIL, PROV_TELEFONO_, CLI_OBS) VALUES ({cli_id}, {tcli_id}, '{cli_apellido}', '{cli_nombre}', '{cli_ruc}', '{cli_dir}', '{cli_mail}', '{prov_telefono}', '{cli_obs}');"
 
         # Escribe la sentencia SQL en el archivo
         file.write(insert_sql + '\n')
