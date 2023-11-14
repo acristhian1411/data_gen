@@ -11,12 +11,20 @@ with open('proveedores.sql', 'w') as file:
 
     # Define la cantidad de registros a generar para la tabla "producto_tipos"
     num_registros_tipos = 4
-
+    # Define la cantidad de registros a generar para la tabla "producto_tipos"
+    num_registros_marcas = 10
     # Define la cantidad de registros a generar para la tabla "producto_origen"
     num_registros_origen = 3
 
     # Define la cantidad de registros a generar para la tabla "productos"
     num_registros_productos = 50  # Puedes ajustar este número según tu necesidad
+
+     # Genera datos para la tabla "producto_presentacion"
+    for i in range(1,num_registros_marcas):
+        marca_id = i
+        marca_desc = fake.word()
+        insert_sql = f"INSERT INTO marcas (marca_id, marca_desc) VALUES ({marca_id},'{marca_desc}');"
+        file.write(insert_sql + '\n')
 
      # Genera datos para la tabla "producto_presentacion"
     for i in range(1,num_registros_presentacion):
@@ -43,6 +51,7 @@ with open('proveedores.sql', 'w') as file:
     for i in range(1,num_registros_productos):
         prod_id = i
         tprod_id = random.randint(1, (num_registros_tipos-1))
+        marca_id = random.randint(1, (num_registros_marcas-1))
         oprod_id = random.randint(1, (num_registros_origen-1))
         preprod_id = random.randint(1, (num_registros_presentacion-1))
         prod_desc = fake.word()
@@ -51,5 +60,5 @@ with open('proveedores.sql', 'w') as file:
         prod_pmino = round(prod_pcosto * 1.35, 2)
         prod_cant = random.randint(0, 200)
 
-        insert_sql = f"INSERT INTO productos (PROD_ID,TPROD_ID, OPROD_ID, PREPROD_ID, PROD_DESC, PROD_PCOSTO, PROD_PMAYO, PROD_PMINO, PROD_CANT) VALUES ({prod_id},{tprod_id}, {oprod_id}, {preprod_id}, '{prod_desc}', {prod_pcosto}, {prod_pmayo}, {prod_pmino}, {prod_cant});"
+        insert_sql = f"INSERT INTO productos (PROD_ID,marca_id,TPROD_ID, OPROD_ID, PREPROD_ID, PROD_DESC, PROD_PCOSTO, PROD_PMAYO, PROD_PMINO, PROD_CANT) VALUES ({prod_id},{marca_id},{tprod_id}, {oprod_id}, {preprod_id}, '{prod_desc}', {prod_pcosto}, {prod_pmayo}, {prod_pmino}, {prod_cant});"
         file.write(insert_sql + '\n')
