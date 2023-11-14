@@ -7,13 +7,13 @@ fake = Faker()
 
 # Abre un archivo para escribir los datos SQL INSERT
 with open('proveedores.sql', 'w') as file:
-    num_registros_presentacion = 3
+    num_registros_presentacion = 4
 
     # Define la cantidad de registros a generar para la tabla "producto_tipos"
-    num_registros_tipos = 3
+    num_registros_tipos = 4
 
     # Define la cantidad de registros a generar para la tabla "producto_origen"
-    num_registros_origen = 2
+    num_registros_origen = 3
 
     # Define la cantidad de registros a generar para la tabla "productos"
     num_registros_productos = 50  # Puedes ajustar este número según tu necesidad
@@ -35,16 +35,16 @@ with open('proveedores.sql', 'w') as file:
     # Genera datos para la tabla "producto_origen"
     for i in range(1,num_registros_origen):
         oprod_id = i
-        oprod_name = fake.unique.random_element(elements=('nacional', 'importada'))
+        oprod_name = fake.unique.random_element(elements=('Nacional', 'importada'))
         insert_sql = f"INSERT INTO producto_origen (OPROD_NAME) VALUES ({oprod_id},'{oprod_name}');"
         file.write(insert_sql + '\n')
 
     # Genera datos para la tabla "productos"
     for i in range(1,num_registros_productos):
         prod_id = i
-        tprod_id = random.randint(1, num_registros_tipos)
-        oprod_id = random.randint(1, num_registros_origen)
-        preprod_id = random.randint(1, num_registros_presentacion)
+        tprod_id = random.randint(1, (num_registros_tipos-1))
+        oprod_id = random.randint(1, (num_registros_origen-1))
+        preprod_id = random.randint(1, (num_registros_presentacion-1))
         prod_desc = fake.word()
         prod_pcosto = round(random.uniform(3500, 350000), 2)
         prod_pmayo = round(prod_pcosto * 1.15, 2)
